@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react';
-import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { useTodoStore } from '../store/useTodoStore';
+import AppBar from '../components/AppBar';
+import { useEffect } from 'react';
 export default function TodoListScreen({ navigation }) {
-  const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { todos, addTodo } = useTodoStore();
   useEffect(() => {
-    setTimeout(() => {
-      setTodos([{ id: 1, title: 'Faire les courses' }, { id: 2, title: 'Sortir le chien' }, { id: 3, title: 'Coder une app RN' }]);
-      setLoading(false);
-    }, 1000);
+    addTodo({ id: 1, title: 'Faire les courses' });
+    addTodo({ id: 2, title: 'Sortir le chien' });
+    addTodo({ id: 3, title: 'Coder une app RN' });
   }, []);
-  if (loading) return <View style={{flex:1,justifyContent:'center'}}><Text>Chargement...</Text></View>;
   return (
     <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 10 }}>Mes tâches</Text>
+      <AppBar title='Mes tâches' />
       <FlatList data={todos} keyExtractor={(i) => i.id.toString()} renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('Détails', { id: item.id, title: item.title })}>
+        <TouchableOpacity onPress={() => navigation.navigate('Détails', item)}>
           <Text style={{ padding: 10, fontSize: 18 }}>{item.title}</Text>
         </TouchableOpacity>
       )} />
