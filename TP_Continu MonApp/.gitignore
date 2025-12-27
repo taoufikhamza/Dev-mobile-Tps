@@ -1,0 +1,32 @@
+# Fichiers temporaires et OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Dossiers de dépendances
+node_modules/
+venv/
+__pycache__/
+.env
+.env.local
+.env.*.local
+.expo/
+
+# Builds et outputs
+build/
+dist/
+out/
+*.log
+
+# IDEs et éditeurs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Autres communs
+*.bak
+*.tmp
+*.cache
