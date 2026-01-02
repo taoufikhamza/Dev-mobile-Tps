@@ -12,4 +12,4 @@ if (!response.ok) {
  throw new Error("Erreur serveur");
 }
 return response.json();
-};
+}; 
